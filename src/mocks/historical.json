@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "_id": "66e47b7f-3b8e-4b2d-8b8c-2d3b8c2d3b8c",
+      "date": "2022-01-01T00:00:00.000Z",
+      "domain": "gics-sennova.com",
+      "url": "https://gics-sennova.com/"
+    },
+    {
+      "_id": "66e47b7f-3b8e-4b2d-8b8c-2d3b8c2d3b8ca",
+      "date": "2022-01-01T00:00:00.000Z",
+      "domain": "www.instagram.com",
+      "url": "https://www.instagram.com/"
+    }
+  ],
+  "status": "success"
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: layouts/docsSearch.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: layouts/docsSearch.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Un array de objetos que contiene los enlaces y descripciones para la documentación.
+ * Cada objeto en el array representa un enlace con su texto visible y su URL asociada.
+ * 
+ * @type {Array&lt;{ text: string, url: string }>}
+ */
+
+export const links = [
+    {
+        text: "Introduccion",
+        url: "/docs",
+    },
+    {
+        text: "Contenido documentación",
+        url: "/docs#intro-content",
+    },
+    {
+        text: "Beneficios de la documentación",
+        url: "/docs#intro-benefits",
+    },
+    // Perceptible
+    {
+        text: "Perceptible",
+        url: "/docs/perceptible",
+    },
+    {
+        text: "Contenido No Textual",
+        url: "/docs/perceptible#perceptible-textless-content",
+    },
+    {
+        text: "Solo Audio y Solo Video (grabado)",
+        url: "/docs/perceptible#perceptible-audio-video",
+    },
+    {
+        text: "Subtítulos (grabado)",
+        url: "/docs/perceptible#perceptible-subtitles",
+    },
+    {
+        text: "Información y Relaciones",
+        url: "/docs/perceptible#perceptible-dom",
+    },
+    {
+        text: "Secuencia Significativa",
+        url: "/docs/perceptible#perceptible-ordered-content",
+    },
+    {
+        text: "Uso del Color",
+        url: "/docs/perceptible#perceptible-color",
+    },
+    {
+        text: "Control del Audio",
+        url: "/docs/perceptible#perceptible-autoplay",
+    },
+    {
+        text: "Contraste (Mínimo)",
+        url: "/docs/perceptible#perceptible-contrast-min",
+    },
+    {
+        text: "Redimensionar Texto",
+        url: "/docs/perceptible#perceptible-font-size",
+    },
+    {
+        text: "Imágenes de Texto",
+        url: "/docs/perceptible#perceptible-image-text",
+    },
+    {
+        text: "Contraste Mejorado",
+        url: "/docs/perceptible#perceptible-better-contrast",
+    },
+    {
+        text: "Sonido de Fondo Bajo Apagado",
+        url: "/docs/perceptible#perceptible-off-sound",
+    },
+    // Operable
+    {
+        text: "Operable",
+        url: "/docs/operable",
+    },
+    {
+        text: "Teclado",
+        url: "/docs/operable#operable-keyboard",
+    },
+    {
+        text: "Sin Trampas en el Teclado",
+        url: "/docs/operable#operable-keyboard-cheat",
+    },
+    {
+        text: "Ajuste de Tiempo",
+        url: "/docs/operable#operable-just-time",
+    },
+    {
+        text: "Pausa, Parar, Ocultar",
+        url: "/docs/operable#operable-pause-stop-hide",
+    },
+    {
+        text: "Tres Destellos",
+        url: "/docs/operable#operable-three-flash",
+    },
+    {
+        text: "Evitar Bloques",
+        url: "/docs/operable#operable-no-blocks",
+    },
+    {
+        text: "Página con Título",
+        url: "/docs/operable#operable-page-title",
+    },
+    {
+        text: "Orden del Foco",
+        url: "/docs/operable#operable-focus-order",
+    },
+    {
+        text: "Propósito del Enlace (En Contexto)",
+        url: "/docs/operable#operable-purpose-link",
+    },
+    {
+        text: "Múltiples Formas",
+        url: "/docs/operable#operable-location-page",
+    },
+    {
+        text: "Encabezados y Etiquetas",
+        url: "/docs/operable#operable-label",
+    },
+    {
+        text: "Apariencia del Enfoque",
+        url: "/docs/operable#operable-appareance-focus",
+    },
+    {
+        text: "Propósito del Enlace (Solo Enlace)",
+        url: "/docs/operable#operable-only-purpose",
+    },
+    {
+        text: "Encabezados de Sección",
+        url: "/docs/operable#operable-section-header",
+    },
+    // Comprensible
+    {
+        text: "Comprensible",
+        url: "/docs/comprensible",
+    },
+    {
+        text: "Idioma de la Página",
+        url: "/docs/comprensible#comprensible-language",
+    },
+    {
+        text: "Al Foco",
+        url: "/docs/comprensible#comprensible-focus",
+    },
+    {
+        text: "Al Entrada",
+        url: "/docs/comprensible#comprensible-start",
+    },
+    {
+        text: "Identificación de Errores",
+        url: "/docs/comprensible#comprensible-errors",
+    },
+    {
+        text: "Etiquetas o Instrucciones",
+        url: "/docs/comprensible#comprensible-instructions",
+    },
+    {
+        text: "Navegación Consistente",
+        url: "/docs/comprensible#comprensible-navigationConsistent",
+    },
+    {
+        text: "Identificación Consistente",
+        url: "/docs/comprensible#comprensible-identificationConsistent",
+    },
+    {
+        text: "Sugerencias de Error",
+        url: "/docs/comprensible#comprensible-errorSuggestion",
+    },
+    {
+        text: "Prevención de Errores (Legales, Financieros, Datos)",
+        url: "/docs/comprensible#comprensible-preventionErrors",
+    },
+    {
+        text: "Palabras Inusuales",
+        url: "/docs/comprensible#comprensible-inusualWords",
+    },
+    {
+        text: "Abreviaturas",
+        url: "/docs/comprensible#comprensible-abbreviations",
+    },
+    {
+        text: "Nivel de Lectura",
+        url: "/docs/comprensible#comprensible-levelofRead",
+    },
+    {
+        text: "Pronunciación",
+        url: "/docs/comprensible#comprensible-pronuntiation",
+    },
+    {
+        text: "Cambio a Pedido del Usuario",
+        url: "/docs/comprensible#comprensible-changeUser",
+    },
+    {
+        text: "Ayuda",
+        url: "/docs/comprensible#comprensible-helpFinally",
+    },
+    // Robusto
+    {
+        text: "Robusto",
+        url: "/docs/robusto",
+    },
+    {
+        text: "Análisis sintáctico",
+        url: "/docs/robusto#robusto-syntax",
+    },
+    {
+        text: "Nombre, Rol, Valor",
+        url: "/docs/robusto#robusto-aria",
+    },
+    {
+        text: "Uso adecuado de ARIA",
+        url: "/docs/robusto#robusto-aria2",
+    },
+    {
+        text: "Contraste de Color",
+        url: "/docs/robusto#robusto-contrast",
+    },
+    {
+        text: "Enfoque Visible",
+        url: "/docs/robusto#robusto-focus",
+    },
+    {
+        text: "Contraste Mejorado",
+        url: "/docs/robusto#robusto-contrast2",
+    },
+    {
+        text: "Enlaces con Propósito Claro",
+        url: "/docs/robusto#robusto-links",
+    },
+];
+
+export const source = links.map((link) => link.text);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/breadCrumb.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/breadCrumb.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useNavigate, useLocation } from "react-router-dom";
+import { Breadcrumb } from "@progress/kendo-react-layout";
+import { SvgIcon } from "@progress/kendo-react-common";
+import * as icons from "@progress/kendo-svg-icons";
+
+/**
+ * Componente BreadCrumb que muestra una barra de navegación para facilitar la 
+ * navegación a través de la aplicación. Muestra la ruta actual basada en la URL.
+ * 
+ * @component breadCrumb
+ * @returns {JSX.Element} Un componente que renderiza una barra de navegación 
+ * con enlaces a las diferentes secciones de la aplicación.
+ */
+export default function BreadCrumb() {
+
+    /**
+     * Hook de navegación y ubicación para el componente.
+     * 
+     * - `useNavigate`: Permite la navegación programática en la aplicación. 
+     *                  Se utiliza para cambiar la ruta actual.
+     * 
+     * - `useLocation`: Proporciona información sobre la ubicación actual del 
+     *                  navegador, incluida la URL. 
+     *                  Se utiliza para acceder a los segmentos de la ruta.
+     * 
+     * @returns {void}
+     */
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    /**
+     * Segmenta la ruta actual en partes individuales.
+     * 
+     * Separa la ruta actual (`location.pathname`) en segmentos 
+     * basados en el carácter `/` y filtra los segmentos vacíos. 
+     * Esto es útil para construir componentes de navegación 
+     * como un breadcrumb.
+     * 
+     * @type {string[]}
+     */
+    const pathSegments = location.pathname
+        .split("/")
+        .filter((segment) => segment);
+
+    /**
+     * Crea un array de elementos de navegación (breadcrumb).
+     * 
+     * Cada elemento incluye un identificador único (`id`), un texto 
+     * representativo (`text`), una ruta (`path`) y un ícono 
+     * correspondiente (`icon`).
+     * 
+     * @type {Array&lt;{ id: string, text: string, path: string, icon: JSX.Element }>}
+     */
+    const items = [
+        {
+            id: "home",
+            text: "Inicio",
+            path: "/",
+            icon: &lt;SvgIcon icon={icons.homeIcon} />,
+        },
+        ...pathSegments.map((segment, index) => {
+            const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
+            const itemText = segment.charAt(0).toUpperCase() + segment.slice(1);
+            return {
+                id: segment,
+                text:
+                    itemText == "Docs"
+                        ? "Documentación"
+                        : itemText == "Team"
+                        ? "Equipo"
+                        : itemText == "SearchUrl"
+                        ? "Búsqueda url"
+                        : itemText,
+                path: path,
+            };
+        }),
+    ];
+
+    /**
+     * Modifica el texto del tercer elemento en el array `items` 
+     * si hay exactamente tres elementos y el segundo es "Búsqueda url".
+     *
+     * Si se cumplen las condiciones, se cambia el texto del tercer elemento 
+     * a "Detalles dominio".
+     */
+    if (items.length == 3 &amp;&amp; items[1].text == "Búsqueda url") {
+        items[2].text = "Detalles dominio";
+    }
+
+    /**
+     * Maneja la selección de un elemento de navegación.
+     *
+     * @param {Object} event - El evento que contiene información sobre la selección.
+     * @param {string} event.id - El identificador del elemento seleccionado.
+     */
+    const handleItemSelect = (event) => {
+        const itemIndex = items.findIndex(
+            (curValue) => curValue.id === event.id
+        );
+        redirect(items[itemIndex]);
+    };
+
+    /**
+     * Maneja el evento de pulsar una tecla.
+     *
+     * Si se presiona la tecla "Enter" (código de tecla 13), 
+     * redirige al elemento correspondiente.
+     *
+     * @param {Object} event - El evento de teclado.
+     */
+    const handleKeyDown = (event) => {
+        if (event.nativeEvent.keyCode === 13) {
+            const itemIndex = items.findIndex(
+                (curValue) => curValue.id === event.id
+            );
+            redirect(items[itemIndex]);
+        }
+    }
+
+    /**
+     * Redirige a la ruta especificada en el elemento seleccionado.
+     *
+     * Esta función verifica si el elemento seleccionado tiene una ruta válida 
+     * y, si es así, utiliza la función `navigate` para redirigir al usuario 
+     * a esa ruta.
+     *
+     * @param {Object} selectedItem - El elemento seleccionado para redirigir.
+     * @param {string} selectedItem.path - La ruta a la que redirigir.
+     */
+    const redirect = (selectedItem) => {
+        if (selectedItem &amp;&amp; selectedItem.path) {
+            navigate(selectedItem.path);
+        }
+    }
+    
+    return (
+        &lt;div className="container">
+            &lt;Breadcrumb
+                data={items}
+                onItemSelect={handleItemSelect}
+                onKeyDown={handleKeyDown}
+                size="large"
+            />
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

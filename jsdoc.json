@@ -1,0 +1,19 @@
+{
+    "source": {
+        "include": [
+            "./src",
+            "./src/components",
+            "./src/Hooks",
+            "./src/layouts",
+            "./src/mocks",
+            "./src/pages",
+            "./src/services"
+        ],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "exclude": "node_modules/|docs"
+    },
+    "plugins": [],
+    "opts": {
+        "destination": "docs/"
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: layouts/header.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: layouts/header.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { Button } from "@progress/kendo-react-buttons";
+import {
+    AppBar,
+    AppBarSection,
+    AppBarSpacer,
+    Menu,
+    MenuItem,
+} from "@progress/kendo-react-layout";
+import { Popup } from "@progress/kendo-react-popup";
+import { bellIcon, menuIcon } from "@progress/kendo-svg-icons";
+
+
+/**
+ * Componente Header.
+ * 
+ * Este componente renderiza la barra de navegación con un logo, un menú de navegación y una versión responsive para dispositivos móviles.
+ * Incluye enlaces para redirigir a diferentes rutas dentro de la aplicación.
+ * 
+ * @component Header
+ * @returns {JSX.Element} El componente Header que contiene la barra de navegación y el menú.
+ */
+
+export default function Header() {
+    
+    /**
+     * Array de objetos que representa los elementos del menú.
+     * Cada objeto contiene el texto y la ruta del enlace correspondiente.
+     * @type {Array&lt;{ text: string, url: string }>}
+     */
+
+    const menuItems = [
+        {
+            text: "Inicio",
+            route: "/",
+        },
+        {
+            text: "WCAG",
+            route: "/wcag",
+            items: [
+                {
+                    text: "Quienes somos",
+                    route: "/team",
+                },
+            ],
+        },
+        {
+            text: "Busqueda Url",
+            route: "/searchUrl",
+        },
+        {
+            text: "Documentación",
+            route: "/docs",
+        },
+    ];
+
+    // Estado para controlar la visibilidad del menú responsive
+    const [show, setShow] = useState(false);
+    const anchor = React.useRef(null);
+
+    /**
+     * Función para manejar el clic en el botón del menú responsive.
+     * Alterna la visibilidad del menú.
+     */
+    const handleClick = () => {
+        setShow(!show);
+    };
+
+    // Funcion para redireccionar
+    const navigate = useNavigate();
+
+    /**
+     * Función que redirige a la ruta seleccionada en el menú.
+     * 
+     * @param {Object} event - Evento de selección del menú.
+     */
+    const onSelect = (event) => {
+        navigate(event.item.route);
+    };
+
+    /**
+     * Efecto secundario que se ejecuta después de que el componente se ha montado.
+     * Este efecto agrega la clase 'text-xl' a todos los elementos de texto del menú 
+     * que tienen la clase 'k-menu-link-text'. Esto se utiliza para aplicar un 
+     * estilo específico (tamaño de fuente más grande) a los enlaces del menú.
+     * 
+     * La dependencia vacía '[]' significa que este efecto solo se ejecutará una vez
+     * al montar el componente, similar a componentDidMount en componentes de clase.
+     */
+    useEffect(() => {
+        document.querySelectorAll(".k-menu-link-text").forEach((element) => {
+            element.classList.add("text-xl");
+        });
+    });
+
+    return (
+        &lt;AppBar className="header" positionMode="sticky" themeColor="light">
+            &lt;nav className="header__container">
+                {/* Logo */}
+                &lt;AppBarSection>
+                    &lt;Link to="/" className="header__brand">
+                        &lt;div className="header__logo">
+                            &lt;img
+                                src="/logo-sena.png"
+                                alt="Logo sena"
+                                className="image"
+                            />
+                        &lt;/div>
+                    &lt;/Link>
+                &lt;/AppBarSection>
+
+                &lt;AppBarSpacer />
+
+                {/* Menú */}
+                &lt;AppBarSection>
+                    &lt;div id="header__desktop" className="header__desktop">
+                        &lt;Menu onSelect={onSelect} items={menuItems} />
+                    &lt;/div>
+                &lt;/AppBarSection>
+
+                {/* Menu Responsive */}
+                &lt;AppBarSection>
+                    &lt;div ref={anchor} id="header__mobile">
+                        &lt;Button
+                            fillMode="flat"
+                            onClick={handleClick}
+                            type="button"
+                            svgIcon={menuIcon}
+                        />
+                    &lt;/div>
+                    {show &amp;&amp; (
+                        &lt;Popup
+                            anchor={anchor.current}
+                            show={show}
+                            style={{
+                                marginLeft: -10,
+                                zIndex: 1000,
+                            }}
+                        >
+                            &lt;Menu
+                                items={menuItems}
+                                onSelect={onSelect}
+                                vertical={true}
+                                style={{
+                                    display: "inline-block",
+                                }}
+                            />
+                        &lt;/Popup>
+                    )}
+                &lt;/AppBarSection>
+            &lt;/nav>
+        &lt;/AppBar>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

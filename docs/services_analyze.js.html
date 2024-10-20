@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/analyze.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/analyze.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * URL base de la API utilizada para hacer solicitudes HTTP.
+ * En este caso, apunta al servidor local que corre en el puerto 5000.
+ * @constant {String}
+ */
+const API_URL = "http://127.0.0.1:5000";
+
+/**
+ * Realiza un análisis de una lista de URLs, procesando cada una para extraer su dominio y otros datos.
+ * @function analyzeUrl
+ * @param {Array&lt;String>} urls - Una lista de URLs a analizar.
+ * @returns {Promise&lt;Object>} Una promesa que resuelve en un objeto que contiene el estado de la operación (`status`), 
+ * un mensaje (`message`), y los datos procesados en caso de éxito. Cada entrada de `data` incluye `id`, `url`, `domain` y `date`.
+ * Retorna un objeto con `status: "error"` y un array vacío si la operación falla.
+ */
+
+export const analyzeUrl = async (urls) => {
+    const data = await Fetchdata("/analyze", urls)
+
+    // const data = analyze;
+
+    if (data.status === "success") {
+        const response = data.data.map((result) => {
+            let domain = result.url;
+
+            if (domain.startsWith("http://")) {
+                domain = domain.slice(7);
+            } else if (domain.startsWith("https://")) {
+                domain = domain.slice(8);
+            }
+
+            domain = domain.split("/")[0];
+
+            return {
+                id: result.unique_id,
+                url: result.url,
+                domain: domain,
+                date: result.date,
+            };
+        });
+
+        return {
+            status: "success",
+            message: "Análisis completado",
+            data: response,
+        };
+    } else {
+        return { status: "error", message: data.message, data: [] }
+    }
+}
+
+/**
+ * Realiza una solicitud POST a un endpoint específico enviando una lista de URLs en el cuerpo de la petición.
+ * @async la función es asíncrona
+ * @function Fetchdata el nombre de la función es FetchData
+ * @param {String} endpoint - El endpoint que se concatenará a la URL base para formar la URL de la solicitud.
+ * @param {Array&lt;String>} urls - Una lista de URLs que se enviarán en el cuerpo de la solicitud.
+ * @returns {Promise&lt;Object|Array>} Una promesa que resuelve en los datos en formato JSON si la solicitud es exitosa, 
+ * o un array vacío si ocurre un error.
+ * @throws {Error} Lanzará un error si la respuesta HTTP no es exitosa (código de estado fuera del rango 2xx).
+ */
+
+const Fetchdata = async (endpoint, urls) => {
+    try {
+        const response = await fetch(API_URL + endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ urls: urls }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (e) {
+        console.error("Error buscando URLs:", e.message || e);
+        return [];
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

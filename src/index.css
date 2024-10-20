@@ -1,0 +1,535 @@
+/* Estilos generales para todos los elementos, resetea los valores por defecto */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    border: none;
+    outline: none;
+    vertical-align: baseline;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* Para evitar que el texto se ajuste automáticamente en dispositivos móviles */
+    -moz-osx-font-smoothing: grayscale; /* Mejora la suavidad de las fuentes en MacOS */
+}
+
+/* Estilos generales del cuerpo del documento */
+body {
+    background-color: #fff;
+    font-family: "Lato", system-ui;
+    color: #000;
+
+    /* Variables personalizadas para colores y fuentes */
+    --family-tittle: "Helvetica";
+    --family-text: "Lato";
+    --color-light-blue: rgb(121, 221, 255);
+    --color-blue: #04324d;
+    --color-dark-blue: #031e2e;
+    --color-orange: #fbad20;
+    --color-green: #39a900;
+    --color-dark-green: #216100;
+
+    /* Variables de Kendo React */
+    --kendo-color-primary: var(--color-green);
+    --kendo-color-primary-hover: var(--color-dark-green);
+    --kendo-color-primary-active: var(--color-green);
+    --kendo-color-primary-emphasis: var(--color-green);
+    --kendo-color-primary-on-subtle: var(--color-green);
+}
+
+/* Estilos de encabezados (h1 a h6) usando la fuente personalizada */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--family-tittle);
+}
+
+/* Estilos del contenedor principal (main), con flexbox y espacio entre elementos */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* Estilos generales para las secciones */
+section {
+    width: 100%;
+    padding: 0px 10px;
+}
+
+/* Contenedor centrado con ancho máximo de 1200px */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+/* Estilos para el contenedor de la aplicación */
+#app__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 50px;
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: var(--color-blue);
+    color: #fffd;
+    padding: 20px 10px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Estilos para imágenes que ocupan todo el espacio disponible */
+.image {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+/* Imágenes que cubren todo el contenedor */
+.image--cover {
+    object-fit: cover;
+}
+
+/* Estilo para enlaces resaltados con fondo azul claro */
+.link--highlighted {
+    background: var(--color-light-blue);
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: underline;
+}
+
+/* Colores de fondo personalizados */
+.bg--blue {
+    background-color: var(--color-blue);
+}
+
+.bg--orange {
+    background-color: var(--color-orange);
+}
+
+.bg--green {
+    background-color: var(--color-green);
+}
+
+.bg--dark-green {
+    background-color: var(--color-dark-green);
+}
+
+/* Estilos de enlaces (sin subrayado por defecto) */
+a {
+    text-decoration: none;
+}
+
+/* Estilo de enlaces con color verde y subrayado, cambia al verde oscuro al pasar el ratón */
+.link {
+    color: var(--color-green);
+    text-decoration: underline;
+
+    &:hover {
+        color: var(--color-dark-green);
+    }
+}
+
+/* Ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/* Colores de texto personalizados */
+.text--blue {
+    color: var(--color-blue);
+}
+
+.text--orange {
+    color: var(--color-orange);
+}
+
+.text--green {
+    color: var(--color-green);
+}
+
+.text--dark-green {
+    color: var(--color-dark-green);
+}
+
+.text--black {
+    color: #000;
+}
+
+.text--white {
+    color: #fff;
+}
+
+/* Botón con fondo naranja, texto en blanco y negrita */
+.button--orange {
+    background-color: var(--color-orange);
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffff;
+}
+
+/* Botón que indica carga (gris, sin interacción) */
+.button--loading {
+    background-color: gray;
+    color: white;
+    pointer-events: none;
+    border: 1px solid transparent;
+}
+
+/* - - - - - - SECCIÓN DEL HEADER - - - - - - */
+
+/* Estilos generales del header con fondo blanco y sombra */
+.header {
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 99;
+    box-shadow: none;
+}
+
+/* Contenedor del header con disposición en flex y espacio entre elementos */
+.header__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos del logo en el header */
+.header__logo {
+    width: 57px;
+    height: 57px;
+}
+
+/* Sin sombra al enfocar un elemento del menú */
+.k-menu-item:focus {
+    box-shadow: none;
+}
+
+/* Transición de color y escala en los textos y flechas del menú */
+.k-menu-link-text,
+.k-menu-expand-arrow svg {
+    transition: color, scale 300ms;
+    color: var(--color-blue);
+}
+
+/* Cambia el color de los elementos del menú enfocados a verde */
+.k-menu-item[tabindex="0"] span,
+.k-menu-item[tabindex="0"] svg {
+    color: var(--color-green);
+}
+
+/* Cambia el color y aumenta la escala al pasar el ratón sobre los enlaces del menú */
+.k-menu-link:hover .k-menu-link-text,
+.k-menu-link:hover .k-menu-expand-arrow svg {
+    color: green;
+    scale: 1.025;
+}
+
+/* Oculta el header de escritorio por defecto */
+#header__desktop {
+    display: none;
+}
+
+/* - - - - - - CONSULTAS DEL HEADER - - - - - - */
+
+/* Muestra el header de escritorio a partir de 600px de ancho */
+@media screen and (min-width: 600px) {
+    #header__desktop {
+        display: block;
+    }
+
+    /* Oculta el header móvil en pantallas grandes */
+    #header__mobile {
+        display: none;
+    }
+}
+
+/* - - - - - - CARRUSEL DE EQUIPO - - - - - - */
+
+/* Estilos para el componente de scroll con borde y margen superior */
+.k-scrollview {
+    border: 0px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Vista del carrusel con elementos centrados */
+.k-scrollview-view {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    & > .carousel__item {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & figure {
+            height: 220px;
+            width: 220px;
+            margin: 0px auto 20px;
+            background-color: var(--color-green);
+            mask: url("/mask.png") center no-repeat;
+            mask-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+/* Estilos específicos para el carrusel con fondo verde */
+.carousel--green .k-scrollview-view {
+    color: #fff;
+    background-color: var(--color-green);
+
+    & figure,
+    & .carousel__card {
+        background-color: white;
+        color: #000;
+    }
+}
+
+/* Estilos específicos para el carrusel con fondo azul */
+.carousel--blue .k-scrollview-view {
+    color: #fff;
+    background-color: var(--color-blue);
+
+    & figure,
+    & .carousel__card {
+        background-color: white;
+        color: #000;
+    }
+}
+
+/* Tarjetas del carrusel con diseño flexible y fondo verde */
+.carousel__card {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--color-green);
+    color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-wrap: wrap;
+
+    & button {
+        background-color: var(--color-blue);
+        color: #fff;
+        border: none;
+        padding: 10px 40px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
+/* Estilos para los botones de navegación del carrusel */
+.k-scrollview-next,
+.k-scrollview-prev {
+    padding: 0px 10px;
+    transition: 300ms;
+}
+
+/* Estilos de los íconos de los botones de navegación */
+.k-scrollview-next svg,
+.k-scrollview-prev svg {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #fff;
+    fill: black;
+    border: 2px solid black;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media screen and (max-width: 992px) {
+    /* Cambia la dirección de los elementos del carrusel en pantallas pequeñas */
+    .carousel__item {
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    /* Establece la altura del scroll en pantallas pequeñas */
+    .k-scrollview {
+        height: 850px !important;
+    }
+
+    /* Estilos para la barra lateral de documentación */
+    .docs__sidebar {
+        flex: none;
+        width: fit-content;
+    }
+}
+
+/* Estilos responsivos para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+    /* Oculta el texto que excede el ancho disponible */
+    .text--truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+/* - - - - - - ESTILOS DE DOCUMENTACIÓN - - - - - - */
+
+/* Contenedor principal de la documentación */
+#docs__container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+
+    /* Estilo para el encabezado de la documentación */
+    & > .header {
+        flex: none;
+    }
+}
+
+/* Estilo para el área principal de la documentación */
+.docs__main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+/* Contenido principal de la documentación */
+.docs__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    padding: 0px 20px;
+    gap: 40px;
+    overflow-y: scroll;
+}
+
+/* Estilos para la accesibilidad */
+.accessibility {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    gap: 15px;
+
+    /* Estilo para encabezados dentro de la accesibilidad */
+    & > h3 {
+        border-bottom: #04324d solid 1px;
+    }
+
+    /* Estilos para enlaces en la sección de accesibilidad */
+    & a {
+        text-decoration: underline;
+    }
+
+    /* Estilo para listas dentro de accesibilidad */
+    & ul {
+        padding-left: 25px;
+    }
+}
+
+/* Estilo para cada ítem de accesibilidad */
+.accessibility__item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    /* Estilos para bloques de código dentro de accesibilidad */
+    & code,
+    & pre {
+        font-size: 14px;
+        line-height: 1.2 !important;
+        border-radius: 5px;
+    }
+}
+
+/* Estilos para la barra lateral de documentación */
+.docs__sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    height: initial;
+    padding: 0px 10px;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+/* Lista dentro de la barra lateral de documentación */
+.docs__sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    /* Estilos para enlaces en la lista de la barra lateral */
+    & a {
+        color: #000;
+        padding: 10px 8px;
+        border-radius: 5px;
+        transition: 200ms;
+
+        /* Efecto hover en enlaces */
+        &:hover {
+            background-color: #d8d8d8;
+        }
+    }
+}
+
+/* Estilos para filtros de búsqueda en la documentación */
+.docs__search-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    /* Estilo para el input de texto en filtros */
+    & input[type="text"] {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Estilo para el dropdown de Kendo */
+.k-dropdownlist {
+    font-size: 15px;
+    width: 120px;
+}
+
+/* Ocultar niveles de accesibilidad por defecto */
+.accessibility--level-a,
+.accessibility--level-aa,
+.accessibility--level-aaa {
+    display: none;
+}
+
+/* Muestra los niveles de accesibilidad seleccionados */
+.docs__main:has(#c-a:checked) .accessibility--level-a,
+.docs__main:has(#c-aa:checked) .accessibility--level-aa,
+.docs__main:has(#c-aaa:checked) .accessibility--level-aaa {
+    display: flex;
+}

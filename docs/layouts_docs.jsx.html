@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: layouts/docs.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: layouts/docs.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+
+// Components
+import Header from "./header";
+import Sidebar from "./sidebarDocumentation";
+import SearchFilters from "./searchFilters";
+import BreadCrumb from "../components/breadCrumb";
+import { AccessibilityWidget } from "sena-accessibility";
+
+/**
+ * DocsLayout - Componente de diseño para la sección de documentación.
+ * 
+ * Este componente organiza la estructura de la sección de documentación de la aplicación, 
+ * que incluye un encabezado (Header), un componente de navegación tipo BreadCrumb, 
+ * una barra lateral (Sidebar), y el contenido principal de la documentación (manejado por `Outlet`).
+ * Además, se incluye un widget de accesibilidad.
+ * 
+ * Se encarga de manejar el desplazamiento suave al elemento objetivo cuando se navega usando anclas
+ * (hash en la URL). El componente también escucha los cambios de hash para actualizar el scroll cuando
+ * el hash cambia.
+ * 
+ * @component DocsLayout
+ * 
+ * @returns {JSX.Element} La estructura del layout de la sección de documentación con scroll manejado por hash y accesibilidad.
+ */ 
+ 
+
+export default function DocsLayout() {
+
+    /**
+     * Se usa para detectar cambios en la ubicación, como el cambio en el pathname o en el hash, y así ejecutar la función de desplazamiento que ajusta la posición del contenedor en función del ancla
+     */
+    const location = useLocation();
+
+    /**
+     * Desplaza hacia un elemento dentro del contenedor basado en el hash actual de la URL.
+     * Si hay un hash presente en la URL, se desplaza hacia el elemento correspondiente dentro del contenedor `.docs__content`.
+     * Si no se encuentra un hash, se desplaza hacia la parte superior del contenedor.
+     */
+    const scrollToElementInContainer = () => {
+        const hash = window.location.hash;
+        const container = document.querySelector(".docs__content");
+
+        if (hash.length > 0) {
+            const targetElement = document.querySelector(hash);
+
+            if (targetElement &amp;&amp; container) {
+                container.scrollTo({
+                    top: targetElement.offsetTop - container.offsetTop,
+                    behavior: "smooth",
+                });
+            }
+        } else {
+            container.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    };
+
+    /**
+     * Efecto que ejecuta el desplazamiento basado en el hash de la URL y escucha cambios en el hash.
+     * Desplaza al elemento adecuado al cambiar la ruta o el hash.
+     */
+    useEffect(() => {
+        scrollToElementInContainer();
+
+        const handleHashChange = () => {
+            scrollToElementInContainer();
+        };
+
+        window.addEventListener("hashchange", handleHashChange);
+
+        return () => {
+            window.removeEventListener("hashchange", handleHashChange);
+        };
+    }, [location.pathname, window.location.hash]);
+
+    return (
+        &lt;>
+            &lt;div id="docs__container">
+                &lt;Header />
+                &lt;BreadCrumb />
+                &lt;div className="docs__main">
+                    &lt;Sidebar />
+                    &lt;div className="docs__content">
+                        &lt;SearchFilters />
+                        &lt;Outlet />
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;AccessibilityWidget />
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

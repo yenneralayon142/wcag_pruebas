@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import UseDocumentTitleUpdater from "./Hooks/useDocumentTitleUpdater.js";
+
+// Layouts
+import AppLayout from "./layouts/app";
+import DocsLayout from "./layouts/docs";
+
+// Pages
+import Home from "./pages/index";
+import Error from "./pages/error";
+import Wcag from "./pages/wcag";
+import SearchUrl from "./pages/searchUrl";
+import Team from "./pages/team";
+
+// Docs pages
+import Intro from "./components/docsWcag/intro";
+import Perceptible from "./components/docsWcag/perceptible/perceptible";
+import Operable from "./components/docsWcag/operable/operable";
+import Comprensible from "./components/docsWcag/comprensible/comprensible";
+import Robusto from "./components/docsWcag/robusto/robusto";
+
+/**
+ * Componente principal de la aplicación que configura 
+ * las rutas utilizando React Router.
+ *
+ * Este componente utiliza el `BrowserRouter` para manejar 
+ * la navegación entre las diferentes páginas de la aplicación.
+ * También incluye un hook personalizado `UseDocumentTitleUpdater` 
+ * para actualizar el título del documento según la ruta actual.
+ *
+ * Las rutas incluyen:
+ * - Rutas principales: Inicio, WCAG, búsqueda de URL y equipo.
+ * - Rutas de documentación: Introducción, perceptible, operable, 
+ *   comprensible y robusto.
+ * - Una ruta de error que se muestra para cualquier ruta no 
+ *   encontrada.
+ *
+ * @returns {JSX.Element} Un elemento JSX que representa la 
+ * estructura de rutas de la aplicación.
+ */
+
+export default function App() {
+    return (
+        &lt;BrowserRouter>
+            &lt;UseDocumentTitleUpdater />
+            &lt;Routes>
+                {/* Rutas principales */}
+                &lt;Route path="/" element={&lt;AppLayout />}>
+                    &lt;Route index element={&lt;Home />} />
+                    &lt;Route path="/wcag" element={&lt;Wcag />} />
+                    &lt;Route path="/searchUrl/*" element={&lt;SearchUrl />} />
+                    &lt;Route path="/team" element={&lt;Team />} />
+                &lt;/Route>
+
+                {/* Rutas de documentación */}
+                &lt;Route path="/docs/*" element={&lt;DocsLayout />}>
+                    &lt;Route index element={&lt;Intro />} />
+                    &lt;Route path="perceptible" element={&lt;Perceptible />} />
+                    &lt;Route path="operable" element={&lt;Operable />} />
+                    &lt;Route path="comprensible" element={&lt;Comprensible />} />
+                    &lt;Route path="robusto" element={&lt;Robusto />} />
+                &lt;/Route>
+
+                {/* Ruta de error */}
+                &lt;Route path="*" element={&lt;Error />} />
+            &lt;/Routes>
+        &lt;/BrowserRouter>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_URL">API_URL</a></li><li><a href="global.html#Errorelnombredelafunci%25C3%25B3nesError">Error el nombre de la función es Error</a></li><li><a href="global.html#FetchdataElnombredelafunci%25C3%25B3nesFetchData">Fetchdata El nombre de la función es FetchData</a></li><li><a href="global.html#Fetchdataelnombredelafunci%25C3%25B3nesFetchData">Fetchdata el nombre de la función es FetchData</a></li><li><a href="global.html#Homeelnombredelafunci%25C3%25B3nesHome">Home el nombre de la función es Home</a></li><li><a href="global.html#SearchUrlelnombredelafunci%25C3%25B3nesSearchUrl">SearchUrl el nombre de la función es SearchUrl</a></li><li><a href="global.html#Teamelnombredelafunci%25C3%25B3nesTeam">Team el nombre de la función es Team</a></li><li><a href="global.html#Wcagelnombredelafunci%25C3%25B3nesWcag">Wcag el nombre de la función es Wcag</a></li><li><a href="global.html#analyzeUrl">analyzeUrl</a></li><li><a href="global.html#defaultItem">defaultItem</a></li><li><a href="global.html#leverFilter">leverFilter</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#searchDomainElnombredelafunci%25C3%25B3nessearchDomain">searchDomain El nombre de la función es searchDomain</a></li><li><a href="global.html#searchHistoricalelnombredelafunci%25C3%25B3nessearchHistorical">searchHistorical el nombre de la función es searchHistorical</a></li><li><a href="global.html#searchHistoricalDomainElnombredelafunci%25C3%25B3nessearchHistoricalDomain">searchHistoricalDomain El nombre de la función es searchHistoricalDomain</a></li><li><a href="global.html#useEffect">useEffect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 12:16:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
